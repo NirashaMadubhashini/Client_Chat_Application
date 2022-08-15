@@ -1,6 +1,5 @@
 package client;
 
-import Login.LoginFormController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 
 import java.io.*;
 import java.net.Socket;
@@ -43,7 +43,7 @@ public class ClientFormController extends Thread{
 
     public void initialize() throws IOException {
         emojiPane.setVisible(false);
-        String userName = LoginFormController.userName;
+        String userName = Login.LoginFormController.userName;
         clientlbl.setText(userName);
 
         new Thread(() -> {

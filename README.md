@@ -1,3 +1,3 @@
-# Live-Chat-Application
+# Client-Chat-Application
 
 *JavaFX

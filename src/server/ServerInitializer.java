@@ -17,7 +17,7 @@ public class ServerInitializer{
 
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(10001);
+        ServerSocket serverSocket = new ServerSocket(5000);
         Socket accept;
 
         while (true) {

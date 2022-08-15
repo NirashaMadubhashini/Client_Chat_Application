@@ -1,5 +1,6 @@
 package client;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -7,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -23,71 +25,52 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientFormController extends Thread{
-
+    public Label clientlbl;
     public TextArea txtClientPane;
     public TextField txtClientMsg;
-    public Button button;
-    public Label clientlbl;
     public ImageView imgSendImages;
     public VBox vBox;
     public Pane emojiPane;
-    Socket socket = null;
 
-    private FileChooser fileChooser;
-    private File filePath;
-    PrintWriter writer;
-    BufferedReader reader;
-
+    public FileChooser chooser;
+    public File path;
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private String username;
     private PrintWriter printWriter;
-
 
     public void initialize() throws IOException {
         emojiPane.setVisible(false);
+
         String userName = Login.LoginFormController.userName;
         clientlbl.setText(userName);
 
-        new Thread(() -> {
-            try {
-                socket = new Socket("localhost", 5000);
-                InputStreamReader inputStreamReader =
-                        new InputStreamReader(socket.getInputStream());
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                printWriter = new PrintWriter(socket.getOutputStream(), true);
-                String record = bufferedReader.readLine();
-                System.out.println(record);
-                txtClientPane.appendText("\n\nServer :" + record);
+        try {
+            socket = new Socket("localhost", 5000);
+            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            printWriter = new PrintWriter(socket.getOutputStream(), true);
+            this.start();
 
-                while (!record.equals("Exit")) {
-                    record = bufferedReader.readLine();
-                    txtClientPane.appendText("\n\nServer :" + record.trim() + "\n");
-                }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
     }
 
-
-
-    public void clientMsgSendOnAction(MouseEvent mouseEvent) throws IOException {
-        String messageToSend = txtClientMsg.getText();
+    public void clientMsgSendOnAction(MouseEvent mouseEvent) {
         String massage = txtClientMsg.getText();
-        PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
-        printWriter.println(clientlbl.getText() + ": " + massage);
-        System.out.println( "Client Writer :" + printWriter);
 
         if (massage.equalsIgnoreCase("exit")) {
             Stage stage = (Stage) txtClientMsg.getScene().getWindow();
             stage.close();
-        }else if (!messageToSend.isEmpty()){
+        } else if (!massage.isEmpty()) {
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER_RIGHT);
 
             hBox.setPadding(new Insets(5, 5, 5, 10));
-            Text text = new Text(messageToSend);
+            Text text = new Text(massage);
             TextFlow textFlow = new TextFlow(text);
-            textFlow.setStyle("-fx-color: rgb(239,242,255);"+"-fx-background-color: rgb(15,125,242);"+" -fx-background-radius: 20px");
+            textFlow.setStyle("-fx-color: rgb(239,242,255);" + "-fx-background-color: rgb(15,125,242);" + " -fx-background-radius: 20px");
 
             textFlow.setPadding(new Insets(5, 10, 5, 10));
             text.setFill(Color.color(0.934, 0.945, 0.996));
@@ -100,15 +83,95 @@ public class ClientFormController extends Thread{
         }
     }
 
-
-    public void clientUploadImageOnAction(MouseEvent mouseEvent) throws IOException {
+    public void clientUploadImageOnAction(MouseEvent mouseEvent) {
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Image");
-        this.filePath = fileChooser.showOpenDialog(stage);
-        printWriter.println(clientlbl.getText() + " " + "img" + filePath.getPath());
+        chooser = new FileChooser();
+        chooser.setTitle("Open Image");
+        this.path = chooser.showOpenDialog(stage);
+        printWriter.println(clientlbl.getText() + " " + "img" + path.getPath());
         printWriter.flush();
+    }
 
+
+    public void run() {
+        try {
+            while (true) {
+                String massage = bufferedReader.readLine();
+                String[] tokens = massage.split(" ");
+                String command = tokens[0];
+
+                StringBuilder clientMassage = new StringBuilder();
+                for (int i = 1; i < tokens.length; i++) {
+                    clientMassage.append(tokens[i] + " ");
+                }
+
+                String[] massageAr = massage.split(" ");
+                String string = "";
+                for (int i = 0; i < massageAr.length - 1; i++) {
+                    string += massageAr[i + 1] + " ";
+                }
+
+                Text text = new Text(string);
+                String fChar = "";
+
+                if (string.length() > 3) {
+                    fChar = string.substring(0, 3);
+                }
+
+                if (fChar.equalsIgnoreCase("img")) {
+                    string = string.substring(3, string.length() - 1);
+
+                    File file = new File(string);
+                    Image image = new Image(file.toURI().toString());
+
+                    ImageView imageView = new ImageView(image);
+
+                    imageView.setFitWidth(150);
+                    imageView.setFitHeight(200);
+
+                    HBox hBox = new HBox(10);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+                    if (!command.equalsIgnoreCase(clientlbl.getText())) {
+                        vBox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
+                        Text text1 = new Text("  " + command + " :");
+                        hBox.getChildren().add(text1);
+                        hBox.getChildren().add(imageView);
+                    } else {
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(imageView);
+                        Text text1 = new Text(" ");
+                        hBox.getChildren().add(text1);
+                    }
+
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
+
+                } else {
+                    TextFlow tempTextFlow = new TextFlow();
+                    tempTextFlow.getChildren().add(text);
+                    tempTextFlow.setMaxWidth(200);
+
+                    TextFlow textFlow = new TextFlow(tempTextFlow);
+                    HBox hBox = new HBox(12);
+
+                    if (!command.equalsIgnoreCase(clientlbl.getText() + ":")) {
+                        vBox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+                        hBox.getChildren().add(textFlow);
+                    } else {
+                        Text text1 = new Text(clientMassage+"");
+                        TextFlow textFlow1 = new TextFlow(text1);
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(textFlow1);
+                    }
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -167,4 +230,5 @@ public class ClientFormController extends Thread{
             emojiPane.setVisible(false);
         }
     }
+
 }

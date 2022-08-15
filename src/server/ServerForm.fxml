@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #7B1FA2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sever.ServerFormController">
+   <children>
+      <Pane prefHeight="79.0" prefWidth="600.0" style="-fx-background-color: #7B1FA2;">
+         <children>
+            <Label fx:id="serverlbl" layoutX="27.0" layoutY="14.0" text="Server" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="activeNow" layoutX="29.0" layoutY="50.0" prefHeight="21.0" prefWidth="89.0" text="Active Now" />
+         </children>
+      </Pane>
+      <TextArea fx:id="txtServerPane" editable="false" layoutY="79.0" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: black; -fx-border-radius: 5;" />
+      <TextField fx:id="txtServerMsg" layoutX="24.0" layoutY="581.0" prefHeight="47.0" prefWidth="501.0" promptText="      Type a message" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="36.0" fitWidth="47.0" layoutX="463.0" layoutY="587.0" onMouseClicked="#serverUploadImageOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/photo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="73.0" layoutX="536.0" layoutY="584.0" onMouseClicked="#serverMsgSendOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/send1.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vBox" layoutY="82.0" prefHeight="440.0" prefWidth="600.0" />
+      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="420.0" layoutY="587.0" onMouseClicked="#openEmojiPaneOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/emogi.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="emojiPane" layoutX="15.0" layoutY="530.0" prefHeight="45.0" prefWidth="570.0">
+         <children>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="61.0" layoutY="10.0" onMouseClicked="#emoji3OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/cool.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="108.0" layoutY="10.0" onMouseClicked="#emoji4OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/laugh.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="158.0" layoutY="10.0" onMouseClicked="#emoji5OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/hug.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="203.0" layoutY="10.0" onMouseClicked="#emoji6OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/heart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="247.0" layoutY="10.0" onMouseClicked="#emoji7OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/love.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="292.0" layoutY="10.0" onMouseClicked="#emoji8OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/sleepy.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="342.0" layoutY="10.0" onMouseClicked="#emoji9OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/surprised.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="393.0" layoutY="10.0" onMouseClicked="#emoji10OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/party.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="441.0" layoutY="10.0" onMouseClicked="#emoji11OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/angry.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="489.0" layoutY="10.0" onMouseClicked="#emoji12OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/sad.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="539.0" layoutY="9.0" onMouseClicked="#emoji13OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/cry.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#emoji2OnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/free.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

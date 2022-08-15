@@ -27,9 +27,6 @@ public class ServerInitializer{
             ClientHandler clientHandler = new ClientHandler(accept, clientHandlers);
             clientHandlers.add(clientHandler);
             clientHandler.start();
-
         }
-
-
     }
 }

@@ -18,7 +18,7 @@ public class ClientInitializer extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../login/LoginForm.fxml"));
         Scene mainScene = new Scene(parent);
-        primaryStage.setTitle("Live_Chat_Application");
+        primaryStage.setTitle("Live_Chat_Room");
         primaryStage.setScene(mainScene);
         primaryStage.centerOnScreen();
         primaryStage.show();

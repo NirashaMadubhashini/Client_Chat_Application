@@ -26,7 +26,6 @@ import java.net.Socket;
 
 public class ClientFormController extends Thread{
     public Label clientlbl;
-    public TextArea txtClientPane;
     public TextField txtClientMsg;
     public ImageView imgSendImages;
     public VBox vBox;

@@ -18,7 +18,7 @@
                   <Image url="@../assets/new.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="44.0" layoutY="128.0" text="Welcome To Live Chat Application">
+            <Label layoutX="91.0" layoutY="128.0" text="Welcome To Live Chat Room">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>

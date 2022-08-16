@@ -45,7 +45,7 @@ public class ClientFormController extends Thread{
         clientlbl.setText(userName);
 
         try {
-            socket = new Socket("localhost", 10001);
+            socket = new Socket("localhost", 5000);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             this.start();

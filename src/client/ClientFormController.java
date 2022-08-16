@@ -33,6 +33,7 @@ public class ClientFormController extends Thread{
 
     public FileChooser chooser;
     public File path;
+    public Label activeNow;
     private Socket socket;
     private BufferedReader bufferedReader;
     private String username;

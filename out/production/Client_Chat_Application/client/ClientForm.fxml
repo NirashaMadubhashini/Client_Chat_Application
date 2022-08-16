@@ -29,6 +29,16 @@
                   <Image url="@../assets/online3.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="458.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/video.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="522.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/phone-call.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <TextField fx:id="txtClientMsg" layoutX="23.0" layoutY="589.0" prefHeight="47.0" prefWidth="501.0" promptText="      Type a message" style="-fx-background-radius: 10;">
@@ -110,7 +120,7 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="416.0" layoutY="594.0" onMouseClicked="#openEmojiPaneOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="417.0" layoutY="598.0" onMouseClicked="#openEmojiPaneOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/emogi.png" />
          </image>

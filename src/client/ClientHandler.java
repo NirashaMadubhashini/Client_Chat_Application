@@ -13,7 +13,7 @@ public class ClientHandler extends Thread {
     private String clientUsername;
     private PrintWriter printWriter;
 
-    public ClientHandler(Socket socket, ArrayList<ClientHandler>clientHandlers){
+    public ClientHandler(Socket socket,ArrayList<ClientHandler>clientHandlers){
         try{
             this.socket = socket;
             this.clientHandlers=clientHandlers;

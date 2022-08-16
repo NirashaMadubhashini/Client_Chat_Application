@@ -45,7 +45,7 @@ public class ClientFormController extends Thread{
         clientlbl.setText(userName);
 
         try {
-            socket = new Socket("localhost", 5000);
+            socket = new Socket("localhost", 10001);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             this.start();
@@ -58,11 +58,12 @@ public class ClientFormController extends Thread{
 
     public void clientMsgSendOnAction(MouseEvent mouseEvent) {
         String massage = txtClientMsg.getText();
+        printWriter.println(clientlbl.getText() + ": " + massage);
 
         if (massage.equalsIgnoreCase("exit")) {
             Stage stage = (Stage) txtClientMsg.getScene().getWindow();
             stage.close();
-        } else if (!massage.isEmpty()) {
+        }else if (!massage.isEmpty()) {
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER_RIGHT);
 
@@ -149,6 +150,13 @@ public class ClientFormController extends Thread{
 
                 } else {
                     TextFlow tempTextFlow = new TextFlow();
+
+                    if (!command.equalsIgnoreCase(clientlbl.getText() + ":")) {
+                        Text name = new Text(command + " ");
+                        name.getStyleClass().add("name");
+                        tempTextFlow.getChildren().add(name);
+                    }
+
                     tempTextFlow.getChildren().add(text);
                     tempTextFlow.setMaxWidth(200);
 
@@ -159,12 +167,13 @@ public class ClientFormController extends Thread{
                         vBox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
                         hBox.getChildren().add(textFlow);
-                    } else {
-                        Text text1 = new Text(clientMassage+"");
-                        TextFlow textFlow1 = new TextFlow(text1);
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
-                        hBox.getChildren().add(textFlow1);
                     }
+//                    else {
+//                        Text text1 = new Text(clientMassage+"");
+//                        TextFlow textFlow1 = new TextFlow(text1);
+//                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+//                        hBox.getChildren().add(textFlow1);
+//                    }
                     Platform.runLater(() -> vBox.getChildren().addAll(hBox));
                 }
             }

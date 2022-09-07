@@ -1,6 +1,6 @@
 # Client-Chat-Application
 
-*JavaFX<br>
+<b>*JavaFX<br></b>
 *Java Socket<br>
 *Java<br>
 

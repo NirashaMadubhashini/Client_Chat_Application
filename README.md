@@ -1,15 +1,15 @@
 # Client-Chat-Application
 
-<b>*JavaFX<br></b>
+*JavaFX<br>
 *Java Socket<br>
 *Java<br>
 
 
-login<br>
+<b>login<br></b>
 ![screenshot](src/assets/project/logn.png)<br>
 
-Client1<br>
+<b>Client1<br></b>
 ![screenshot](src/assets/project/client1.png)<br>
 
-Client2<br>
+<b>Client2<br></b>
 ![screenshot](src/assets/project/client2.png)

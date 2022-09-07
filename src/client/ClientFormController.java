@@ -4,12 +4,11 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -19,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import login.LoginFormController;
 
 
 import java.io.*;
@@ -33,16 +33,17 @@ public class ClientFormController extends Thread{
 
     public FileChooser chooser;
     public File path;
+    private PrintWriter printWriter;
     public Label activeNow;
     private Socket socket;
     private BufferedReader bufferedReader;
     private String username;
-    private PrintWriter printWriter;
+
 
     public void initialize() throws IOException {
         emojiPane.setVisible(false);
 
-        String userName = Login.LoginFormController.userName;
+        String userName = LoginFormController.userName;
         clientlbl.setText(userName);
 
         try {
@@ -90,7 +91,7 @@ public class ClientFormController extends Thread{
         chooser.setTitle("Open Image");
         this.path = chooser.showOpenDialog(stage);
         printWriter.println(clientlbl.getText() + " " + "img" + path.getPath());
-        printWriter.flush();
+        printWriter.flush(); 
     }
 
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="600.0" style="-fx-background-color: #7B1FA2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.LoginFormController">
+<AnchorPane prefHeight="520.0" prefWidth="600.0" style="-fx-background-color: #7B1FA2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginFormController">
    <children>
       <Pane layoutX="19.0" layoutY="19.0" prefHeight="473.0" prefWidth="563.0" style="-fx-background-color: white;">
          <children>
@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </TextField>
-            <Button fx:id="btnLogin" layoutX="184.0" layoutY="300.0" mnemonicParsing="false" onAction="#userLogInOnAction" prefHeight="40.0" prefWidth="227.0" style="-fx-background-radius: 90; -fx-border-color: #6F1E51; -fx-border-radius: 90; -fx-background-color: white;" styleClass="btnLogin" text="Login" textFill="#6f1e51">
+            <Button fx:id="btnLogin" layoutX="184.0" layoutY="294.0" mnemonicParsing="false" onAction="#UserLogOnAction" prefHeight="40.0" prefWidth="227.0" style="-fx-background-radius: 90; -fx-border-color: #6F1E51; -fx-border-radius: 90; -fx-background-color: white;" styleClass="btnLogin" text="Login" textFill="#6f1e51">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
